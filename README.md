@@ -36,3 +36,43 @@ When considering what you can do with Java, many developers think of building:
 - Mobile applications
 - Desktop applications
 - Enterprise applications
+
+## Install Java:
+
+Please <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download and install JDK</a> on your local machine.
+
+## First Java Program:
+
+Let us look at a simple code that will print the words Hello World.
+
+Example
+
+```java
+public class MyFirstJavaProgram {
+
+   /* This is my first java program.
+    * This will print 'Hello World' as the output
+    */
+
+   public static void main(String []args) {
+      System.out.println("Hello World"); // prints Hello World
+   }
+}
+```
+
+Let's look at how to save the file, compile, and run the program. Please follow the subsequent steps −
+
+- Open notepad and add the code as above.
+- Save the file as: `MyFirstJavaProgram.java`.
+- Open a command prompt window and go to the directory where you saved the class.
+- Type `javac MyFirstJavaProgram.java` and press enter to compile your code. If there are no errors in your code, the command prompt will take you to the next line.
+- Now, type `java MyFirstJavaProgram` to run your program.
+- You will be able to see `Hello World` printed on the window.
+
+Output
+
+```
+javac MyFirstJavaProgram.java
+java MyFirstJavaProgram 
+Hello World
+```

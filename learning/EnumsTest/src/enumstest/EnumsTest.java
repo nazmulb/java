@@ -19,7 +19,6 @@ public class EnumsTest {
         juice.size = FreshJuice.FreshJuiceSize.MEDIUM;
         System.out.println("Size: "+juice.size);
     }
-    
 }
 
 class FreshJuice {

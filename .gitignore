@@ -54,3 +54,6 @@ manifest.mf
 
 # Misc
 *.swp
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag

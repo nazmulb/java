@@ -76,3 +76,5 @@ javac MyFirstJavaProgram.java
 java MyFirstJavaProgram 
 Hello World
 ```
+
+Happy learning :)

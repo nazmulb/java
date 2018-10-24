@@ -1,6 +1,6 @@
 # Java
 
-Java programming language was originally developed by Sun Microsystems which was initiated by James Gosling and released in 1995 as core component of Sun Microsystems' Java platform (Java 1.0 [J2SE]). It promised **Write Once, Run Anywhere (WORA)**, providing no-cost run-times on popular platforms.
+Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. Java programming language was originally developed by Sun Microsystems which was initiated by James Gosling and released in 1995 as core component of Sun Microsystems' Java platform (Java 1.0 [J2SE]). It promised **Write Once, Run Anywhere (WORA)**, providing no-cost run-times on popular platforms.
 
 ## Advantages of Java:
 

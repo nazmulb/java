@@ -33,7 +33,7 @@ class Puppy {
     }
     
     public int getAge(){
-        System.out.println("Puppy's age is: " + puppyAge );
+        System.out.println("Puppy's age is: "+puppyAge);
         return puppyAge;
     }
 }

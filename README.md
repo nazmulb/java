@@ -43,7 +43,7 @@ When considering what you can do with Java, many developers think of building:
 
 First the Java code is compiled by the Java compiler and generates the bytecode.  This bytecode will be stored in class files. Java Virtual Machine (JVM) is unique for each platform.   Though JVM is unique for each platform, all interpret the same bytecode and convert it into machine code required for its own platform and this machine code will be directly executed by the machine in which java program runs.  This makes Java platform independent and portable.
 
-<img />
+<img title="Java Architecture" src="https://raw.githubusercontent.com/nazmulb/java/master/images/JavaArchitecture2.jpg" />
 
 ### Java Virtual Machine (JVM):
 
@@ -65,8 +65,7 @@ A Java Runtime Environment performs the following main tasks respectively.
 
 A detailed Java architecture can be drawn as given below:
 
-<img />
-
+<img title="Java Architecture with JRE" src="https://raw.githubusercontent.com/nazmulb/java/master/images/JavaArchitecture3.jpg" />
 
 ### Just in Time (JIT) Compiler:
 

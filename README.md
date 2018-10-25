@@ -18,6 +18,8 @@ Java is a general-purpose computer-programming language that is concurrent, clas
 
 **Multithreaded:** The capability for a program to perform several tasks simultaneously within a program.
 
+**High Performance:** With the use of Just-In-Time compilers, Java enables high performance.
+
 ## Disadvantages of Java:
 
 **Performance:** SIgnificantly slower and more memory-consuming than natively compiled languages such as C or C++.
@@ -36,6 +38,19 @@ When considering what you can do with Java, many developers think of building:
 - Mobile applications
 - Desktop applications
 - Enterprise applications
+
+## Java virtual machine (JVM):
+
+A Java virtual machine (JVM) is a virtual machine that enables a computer to run Java programs as well as programs written in other languages (e.g. Groovy, Scala, etc) and compiled to Java bytecode.
+
+When Java is compiled, it is not compiled into platform specific machine, rather into platform independent byte code. This byte code is distributed over the web and interpreted by virtual Machine (JVM) on whichever platform it is being run.
+
+## Java Development Kit (JDK):
+
+The Java Development Kit (JDK) is an implementation of either one of the Java Platform, Standard Edition, Java Platform, Enterprise Edition, or Java Platform, Micro Edition platforms released by Oracle Corporation in the form of a binary product aimed at Java developers on Solaris, Linux, macOS or Windows.
+
+The JDK includes a private JVM and a few other resources to finish the development of a Java Application. Since the introduction of the Java platform, it has been by far the most widely used Software Development Kit (SDK).
+
 
 ## Install Java:
 

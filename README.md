@@ -39,9 +39,9 @@ When considering what you can do with Java, many developers think of building:
 - Desktop applications
 - Enterprise applications
 
-## Java virtual machine (JVM):
+## Java Virtual Machine (JVM):
 
-A Java virtual machine (JVM) is a virtual machine that enables a computer to run Java programs as well as programs written in other languages (e.g. Groovy, Scala, etc) and compiled to Java bytecode.
+A Java Virtual Machine (JVM) is a virtual machine that enables a computer to run Java programs as well as programs written in other languages (e.g. Groovy, Scala, etc) and compiled to Java bytecode.
 
 When Java is compiled, it is not compiled into platform specific machine, rather into platform independent byte code. This byte code is distributed over the web and interpreted by virtual Machine (JVM) on whichever platform it is being run.
 

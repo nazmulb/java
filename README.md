@@ -517,6 +517,7 @@ public class ThreadCommunication {
 
 When the above program is complied and executed, it produces the following result −
 
+#### Output:
 ```
 Hi Nahiyan
 Hello Nabil

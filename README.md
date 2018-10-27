@@ -167,8 +167,8 @@ The `java.net` package of the J2SE APIs contains a collection of classes and int
 
 The `java.net` package provides support for the two common network protocols −
 
-- *TCP* − TCP stands for Transmission Control Protocol, which allows for reliable communication between two applications. TCP is typically used over the Internet Protocol, which is referred to as TCP/IP.
-- *UDP* − UDP stands for User Datagram Protocol, a connection-less protocol that allows for packets of data to be transmitted between applications.
+- **TCP** − TCP stands for Transmission Control Protocol, which allows for reliable communication between two applications. TCP is typically used over the Internet Protocol, which is referred to as TCP/IP.
+- **UDP** − UDP stands for User Datagram Protocol, a connection-less protocol that allows for packets of data to be transmitted between applications.
 
 ### Socket Programming:
 
@@ -300,19 +300,19 @@ Multi-threading enables you to write in a way where multiple activities can proc
 ### Life Cycle of a Thread:
 A thread goes through various stages in its life cycle. For example, a thread is born, started, runs, and then dies. The following diagram shows the complete life cycle of a thread.
 
-<img title="Thread Life Cycle" src="https://raw.githubusercontent.com/nazmulb/java/master/images/Thread_Life_Cycle.jpg" width="325" />
+<img title="Thread Life Cycle" src="https://raw.githubusercontent.com/nazmulb/java/master/images/Thread_Life_Cycle.jpg" width="425" />
 
 Following are the stages of the life cycle −
 
-- *New* − A new thread begins its life cycle in the new state. It remains in this state until the program starts the thread. It is also referred to as a born thread.
+- **New** − A new thread begins its life cycle in the new state. It remains in this state until the program starts the thread. It is also referred to as a born thread.
 
-- *Runnable* − After a newly born thread is started, the thread becomes runnable. A thread in this state is considered to be executing its task.
+- **Runnable** − After a newly born thread is started, the thread becomes runnable. A thread in this state is considered to be executing its task.
 
-- *Waiting* − Sometimes, a thread transitions to the waiting state while the thread waits for another thread to perform a task. A thread transitions back to the runnable state only when another thread signals the waiting thread to continue executing.
+- **Waiting** − Sometimes, a thread transitions to the waiting state while the thread waits for another thread to perform a task. A thread transitions back to the runnable state only when another thread signals the waiting thread to continue executing.
 
-- *Timed Waiting* − A runnable thread can enter the timed waiting state for a specified interval of time. A thread in this state transitions back to the runnable state when that time interval expires or when the event it is waiting for occurs.
+- **Timed Waiting** − A runnable thread can enter the timed waiting state for a specified interval of time. A thread in this state transitions back to the runnable state when that time interval expires or when the event it is waiting for occurs.
 
-- *Terminated (Dead)* − A runnable thread enters the terminated state when it completes its task or otherwise terminates.
+- **Terminated (Dead*)* − A runnable thread enters the terminated state when it completes its task or otherwise terminates.
 
 ### Thread Priorities:
 Every Java thread has a priority that helps the operating system determine the order in which threads are scheduled.
@@ -322,7 +322,7 @@ Java thread priorities are in the range between MIN_PRIORITY (a constant of 1) a
 Threads with higher priority are more important to a program and should be allocated processor time before lower-priority threads. However, thread priorities cannot guarantee the order in which threads execute and are very much platform dependent.
 
 ### Create a Thread by Implementing a Runnable Interface:
-If your class is intended to be executed as a thread then you can achieve this by implementing a *Runnable* interface. You will need to follow three basic steps −
+If your class is intended to be executed as a thread then you can achieve this by implementing a **Runnable** interface. You will need to follow three basic steps −
 
 #### Step 1:
 As a first step, you need to implement a `run()` method provided by a Runnable interface. This method provides an entry point for the thread and you will put your complete business logic inside this method. Following is a simple syntax of the `run()` method −
@@ -351,6 +351,8 @@ void start();
 Here is an example that creates a new thread and starts running it −
 
 ```java
+// File Name TestThread.java
+
 class RunnableDemo implements Runnable {
    private Thread t;
    private String threadName;
@@ -415,6 +417,113 @@ Thread: Thread-1, 1
 Thread: Thread-2, 1
 Thread Thread-1 exiting.
 Thread Thread-2 exiting.
+```
+
+### Interthread Communication:
+
+If you are aware of interprocess communication then it will be easy for you to understand interthread communication. Interthread communication is important when you develop an application where two or more threads exchange some information.
+
+There are three simple methods and a little trick which makes thread communication possible. All the three methods are listed below −
+
+- `wait()`: Causes the current thread to wait until another thread invokes the `notify()`.
+- `notify()`: Wakes up a single thread that is waiting on this object's monitor.
+- `notifyAll()`: Wakes up all the threads that called `wait()` on the same object.
+
+All three methods can be called only from within a **synchronized** context.
+
+#### Example:
+This examples shows how two threads can communicate using `wait()` and `notify()` method. You can create a complex system using the same concept.
+
+```java
+// File name ThreadCommunication.java
+
+class Chat {
+   boolean flag = false;
+
+   public synchronized void FromNabil(String msg) {
+      if (flag) {
+         try {
+            wait();
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      }
+      
+      System.out.println(msg);
+      
+      flag = true;
+      notify();
+   }
+
+   public synchronized void FromNahiyan(String msg) {
+      if (!flag) {
+         try {
+            wait();
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      }
+
+      System.out.println(msg);
+      
+      flag = false;
+      notify();
+   }
+}
+
+class T1 implements Runnable {
+   Chat m;
+   String[] s1 = { "Hi Nahiyan", "How are you?", "I am also doing fine!" };
+
+   public T1(Chat m1) {
+      this.m = m1;
+      new Thread(this, "Question").start();
+   }
+
+   public void run() {
+      for (int i = 0; i < s1.length; i++) {
+         m.FromNabil(s1[i]);
+      }
+   }
+}
+
+class T2 implements Runnable {
+   Chat m;
+   String[] s2 = { "Hello Nabil", "I am good, what about you?", "Great!" };
+
+   public T2(Chat m2) {
+      this.m = m2;
+      new Thread(this, "Answer").start();
+   }
+
+   public void run() {
+      for (int i = 0; i < s2.length; i++) {
+         m.FromNahiyan(s2[i]);
+      }
+   }
+}
+
+public class ThreadCommunication {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Chat m = new Chat();
+        new T1(m);
+        new T2(m);
+    }
+}
+```
+
+When the above program is complied and executed, it produces the following result −
+
+```
+Hi Nahiyan
+Hello Nabil
+How are you?
+I am good, what about you?
+I am also doing fine!
+Great!
 ```
 
 Happy learning :)

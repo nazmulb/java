@@ -13,7 +13,7 @@ package threadcommunication;
 class Chat {
    boolean flag = false;
 
-   public synchronized void FromSam(String msg) {
+   public synchronized void FromNabil(String msg) {
       if (flag) {
          try {
             wait();
@@ -28,7 +28,7 @@ class Chat {
       notify();
    }
 
-   public synchronized void FromJam(String msg) {
+   public synchronized void FromNahiyan(String msg) {
       if (!flag) {
          try {
             wait();
@@ -46,7 +46,7 @@ class Chat {
 
 class T1 implements Runnable {
    Chat m;
-   String[] s1 = { "Hi", "How are you?", "I am also doing fine!" };
+   String[] s1 = { "Hi Nahiyan", "How are you?", "I am also doing fine!" };
 
    public T1(Chat m1) {
       this.m = m1;
@@ -55,14 +55,14 @@ class T1 implements Runnable {
 
    public void run() {
       for (int i = 0; i < s1.length; i++) {
-         m.FromSam(s1[i]);
+         m.FromNabil(s1[i]);
       }
    }
 }
 
 class T2 implements Runnable {
    Chat m;
-   String[] s2 = { "Hello", "I am good, what about you?", "Great!" };
+   String[] s2 = { "Hello Nabil", "I am good, what about you?", "Great!" };
 
    public T2(Chat m2) {
       this.m = m2;
@@ -71,7 +71,7 @@ class T2 implements Runnable {
 
    public void run() {
       for (int i = 0; i < s2.length; i++) {
-         m.FromJam(s2[i]);
+         m.FromNahiyan(s2[i]);
       }
    }
 }

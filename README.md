@@ -159,4 +159,117 @@ java MyFirstJavaProgram
 Hello World
 ```
 
+## Networking:
+
+The term network programming refers to writing programs that execute across multiple devices (computers), in which the devices are all connected to each other using a network.
+
+The `java.net` package of the J2SE APIs contains a collection of classes and interfaces that provide the low-level communication details, allowing you to write programs that focus on solving the problem at hand.
+
+The `java.net` package provides support for the two common network protocols −
+
+- *TCP* − TCP stands for Transmission Control Protocol, which allows for reliable communication between two applications. TCP is typically used over the Internet Protocol, which is referred to as TCP/IP.
+- *UDP* − UDP stands for User Datagram Protocol, a connection-less protocol that allows for packets of data to be transmitted between applications.
+
+### Socket Programming:
+
+Sockets provide the communication mechanism between two computers using TCP. A client program creates a socket on its end of the communication and attempts to connect that socket to a server.
+
+When the connection is made, the server creates a socket object on its end of the communication. The client and the server can now communicate by writing to and reading from the socket.
+
+The `java.net.Socket` class represents a socket, and the `java.net.ServerSocket` class provides a mechanism for the server program to listen for clients and establish connections with them.
+
+The following steps occur when establishing a TCP connection between two computers using sockets −
+- The server instantiates a `ServerSocket` object, denoting which port number communication is to occur on.
+- The server invokes the `accept()` method of the `ServerSocket` class. This method waits until a client connects to the server on the given port.
+- After the server is waiting, a client instantiates a Socket object, specifying the server name and the port number to connect to.
+- The constructor of the Socket class attempts to connect the client to the specified server and the port number. If communication is established, the client now has a Socket object capable of communicating with the server.
+- On the server side, the `accept()` method returns a reference to a new socket on the server that is connected to the client's socket.
+
+After the connections are established, communication can occur using I/O streams. Each socket has both an `OutputStream` and an `InputStream`. The client's `OutputStream` is connected to the server's `InputStream`, and the client's `InputStream` is connected to the server's `OutputStream`.
+
+#### Socket Client Example:
+
+```java
+// File Name GreetingClient.java
+import java.net.*;
+import java.io.*;
+
+public class GreetingClient {
+
+    public static void main(String[] args) {
+        String serverName = args[0];
+        int port = Integer.parseInt(args[1]);
+        try {
+            System.out.println("Connecting to " + serverName + " on port " + port);
+            Socket client = new Socket(serverName, port);
+
+            System.out.println("Just connected to " + client.getRemoteSocketAddress());
+            
+            DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            out.writeUTF("Hello from " + client.getLocalSocketAddress());
+            
+            DataInputStream in = new DataInputStream(client.getInputStream());
+            System.out.println("Server says " + in.readUTF());
+            
+            client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }   
+}
+```
+
+
+#### Socket Server Example:
+
+```java
+// File Name GreetingServer.java
+import java.net.*;
+import java.io.*;
+
+public class GreetingServer extends Thread {
+   private ServerSocket serverSocket;
+   
+   public GreetingServer(int port) throws IOException {
+      serverSocket = new ServerSocket(port);
+      serverSocket.setSoTimeout(20000);
+   }
+
+   public void run() {
+      while(true) {
+         try {
+            System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
+            Socket server = serverSocket.accept();
+            
+            System.out.println("Just connected to " + server.getRemoteSocketAddress());
+            
+            DataInputStream in = new DataInputStream(server.getInputStream());
+            System.out.println(in.readUTF());
+            
+            DataOutputStream out = new DataOutputStream(server.getOutputStream());
+            out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!");
+            
+            server.close();
+         } catch (SocketTimeoutException s) {
+            System.out.println("Socket timed out!");
+            break;
+         } catch (IOException e) {
+            e.printStackTrace();
+            break;
+         }
+      }
+   }
+   
+   public static void main(String[] args) {
+      int port = Integer.parseInt(args[0]);
+      try {
+         Thread t = new GreetingServer(port);
+         t.start();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }   
+}
+```
+
 Happy learning :)

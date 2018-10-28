@@ -579,7 +579,7 @@ The following are the paths followed by a JSP −
 
 The four major phases of a JSP life cycle are very similar to the Servlet Life Cycle. The four phases have been described below −
 
-<img title="Thread Life Cycle" src="https://raw.githubusercontent.com/nazmulb/java/master/images/jsp_life_cycle.png" width="460" />
+<img title="Thread Life Cycle" src="https://raw.githubusercontent.com/nazmulb/java/master/images/jsp_life_cycle.jpg" width="460" />
 
 #### JSP Compilation:
 When a browser asks for a JSP, the JSP engine first checks to see whether it needs to compile the page. If the page has never been compiled, or if the JSP has been modified since it was last compiled, the JSP engine compiles the page.

@@ -576,4 +576,75 @@ A JSP life cycle is defined as the process from its creation till the destructio
 
 <img title="Thread Life Cycle" src="https://raw.githubusercontent.com/nazmulb/java/master/images/jsp_lifecycle.png" width="720" />
 
+### Java Bean:
+
+A Java Bean is a java class that should follow following conventions:
+
+- It should have a no-arg constructor.
+- It should be Serializable.
+- It should provide methods to set and get the values of the properties, known as getter and setter methods.
+
+#### Why use Java Bean?
+According to Java white paper, it is a reusable software component. A bean encapsulates many objects into one object, so we can access this object from multiple places. Moreover, it provides the easy maintenance.
+
+#### Java Bean Example:
+
+```java
+    public class StudentsBean implements java.io.Serializable {
+        private String firstName = null;
+        private String lastName = null;
+        private int age = 0;
+
+        public StudentsBean() {
+        }
+
+        public String getFirstName(){
+            return firstName;
+        }
+        
+        public String getLastName(){
+            return lastName;
+        }
+        
+        public int getAge(){
+            return age;
+        }
+        
+        public void setFirstName(String firstName){
+            this.firstName = firstName;
+        }
+        
+        public void setLastName(String lastName){
+            this.lastName = lastName;
+        }
+        
+        public void setAge(Integer age){
+            this.age = age;
+        }
+    }
+```
+
+## JSP vs Servlet:
+
+| JSP | Servlet |
+| --- | --- |
+| JSP is a webpage scripting language that can generate dynamic content. | Servlets are Java programs that are already compiled which also creates dynamic web content. |
+| JSP run slower compared to Servlet as it takes compilation time to convert into Java Servlets. | Servlets run faster compared to JSP. |
+| It’s easier to code in JSP because JSP embeds Java code in HTML. | Servlet typically embeds HTML inside Java code. |
+| In MVC, jsp act as a view. | In MVC, servlet act as a controller. |
+
+## Advantages of JSP:
+
+- User need not write HTML and JAVA code separately.
+- JSP can be used for both front end and for writing business logic.
+- JSP is dynamic compilation, which means when a JSP is modified, it need not be compiled and restarted in the web server. After the modification of JSP, refresh the browser, changes will be reflected.
+- JSP is Efficient: Every request for a JSP is handled by a simple Java thread.
+- JSP is Scalable: Easy integration with other backend services.
+
+## Disadvantages of JSP:
+
+- As JSP pages are translated to servlets and compiled, it is difficult to trace errors occurred in JSP pages.
+- JSP pages require double the disk space to hold the JSP page.
+- JSP pages require more time when accessed for the first time as they are to be compiled on the server.
+
 Happy learning :)

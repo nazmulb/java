@@ -624,7 +624,7 @@ public class StudentsBean implements java.io.Serializable {
 }
 ```
 
-## JSP vs Servlet:
+## What is the difference between JSP and Java Servlet?
 
 | JSP | Servlet |
 | --- | --- |

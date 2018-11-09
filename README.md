@@ -647,4 +647,22 @@ public class StudentsBean implements java.io.Serializable {
 - JSP pages require double the disk space to hold the JSP page.
 - JSP pages require more time when accessed for the first time as they are to be compiled on the server.
 
+## Install NetBeans with Tomcat:
+
+If <a href="https://netbeans.org/downloads/">downloading NetBeans</a>, grab an edition of NetBeans IDE already bundled with Tomcat. You may need to customize the installation to get Tomcat, as described in <a href="https://stackoverflow.com/questions/33048437/no-tomcat-with-netbeans-8-1">this Question</a>.
+
+Make sure all `.sh` scripts under apache-tomcat-8.0.27/bin folder are executable by running the following commad from CLI:
+
+```
+$ chmod a+x *.sh
+```
+
+You should add the following to your vim `.zshrc` file using `vim ~/.zshrc`
+
+```
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
+export PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/bin:$PATH
+export CATALINA_HOME="/Volumes/Macintosh HD/Applications/NetBeans/apache-tomcat-8.0.27"
+```
+
 Happy learning :)

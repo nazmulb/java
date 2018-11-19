@@ -665,4 +665,21 @@ export PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/bin
 export CATALINA_HOME="/Volumes/Macintosh HD/Applications/NetBeans/apache-tomcat-8.0.27"
 ```
 
+## First JSP Program:
+
+Let us look at a simple code:
+
+```jsp
+<html>
+   <head><title>Hello World</title></head>
+   
+   <body>
+      Hello World!<br/>
+      <%
+         out.println("Your IP address is " + request.getRemoteAddr());
+      %>
+   </body>
+</html>
+```
+
 Happy learning :)
